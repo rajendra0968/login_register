@@ -4,15 +4,15 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        name: { type: DataTypes.STRING,},
+        name: { type: DataTypes.STRING,allowNull: false},
         email: { type: DataTypes.STRING, allowNull: false },
-        phone_number: { type: DataTypes.STRING,},
-        otp_verify: { type: DataTypes.STRING,},
+        phone_number: { type: DataTypes.STRING,allowNull: false},
+        otp_verify: { type: DataTypes.BOOLEAN,},
         pincode:{ type: DataTypes.INTEGER,},
-        role_id:{ type: DataTypes.INTEGER,},
+        role_code:{ type: DataTypes.INTEGER,allowNull: false},
         status:{ type: DataTypes.STRING,},
-         created: { type: DataTypes.DATE ,defaultValue: DataTypes.NOW },
-         updated: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+         created: { type: DataTypes.DATE },
+         updated: { type: DataTypes.DATE },
         deleted: { type: DataTypes.DATE },
          //updated: { type: DataTypes.DATE },
         // isVerified: {

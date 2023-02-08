@@ -14,6 +14,10 @@ class UserDao{
         return await db.Customer_table.destroy({where:{id:params.id}})
         
       }
+      findbyname = async(params)=>{
+        return await db.Customer_table.findOne({where:{phone_number:params}});
+      }
+      
 
 }
 

@@ -17,7 +17,7 @@ async function initialize() {
 
     // init models and add them to the exported db object
     db.Customer_table = require('../src/models/account.model')(sequelize);
-    db.Roll_table = require('../src/models/roll')(sequelize);
+    db.Role_table = require('../src/models/role')(sequelize);
     // db.Leave = require('../src/models/leave.model')(sequelize);
     // db.Atten_request=require('../src/models/atten_request.model')(sequelize);
     // db.Leave_data = require('../src/models/leave_data.model')(sequelize);

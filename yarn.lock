@@ -36,6 +36,11 @@
   "resolved" "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz"
   "version" "2.0.0"
 
+"@streamparser/json@^0.0.6":
+  "integrity" "sha512-vL9EVn/v+OhZ+Wcs6O4iKE9EUpwHUqHmCtNUMWjqp+6dr85+XPOSGTEsqYNq1Vn04uk9SWlOVmx9J48ggJVT2Q=="
+  "resolved" "https://registry.npmjs.org/@streamparser/json/-/json-0.0.6.tgz"
+  "version" "0.0.6"
+
 "@tusbar/cache-control@^0.6.1":
   "integrity" "sha512-lVONHkx/OviQ8yIJu6sGmdBJVWMKQm7EDtpvM3s2VihmaqHQocFixMd/9rfAqK5IxFL7XQMVzkpRrKjQ/JBS+Q=="
   "resolved" "https://registry.npmjs.org/@tusbar/cache-control/-/cache-control-0.6.1.tgz"
@@ -201,6 +206,11 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"commander@^6.2.0":
+  "integrity" "sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA=="
+  "resolved" "https://registry.npmjs.org/commander/-/commander-6.2.1.tgz"
+  "version" "6.2.1"
+
 "concat-map@0.0.1":
   "integrity" "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s="
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
@@ -358,6 +368,14 @@
   "integrity" "sha1-JVfBRudb65A+LSR/m1ugFFJpbiA="
   "resolved" "https://registry.npmjs.org/express-unless/-/express-unless-0.3.1.tgz"
   "version" "0.3.1"
+
+"express-validator@^6.14.3":
+  "integrity" "sha512-c4b9NMdhskfcLbH/FchsSfCt4Vb14gKzcotG9zLS+VoOJDox57aGhCL+kmAu7cl+ytaSed+HD5jdJhel8DQsdg=="
+  "resolved" "https://registry.npmjs.org/express-validator/-/express-validator-6.14.3.tgz"
+  "version" "6.14.3"
+  dependencies:
+    "lodash" "^4.17.21"
+    "validator" "^13.7.0"
 
 "express@^4.17.1", "express@>=4.0.0":
   "integrity" "sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g=="
@@ -617,6 +635,15 @@
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
+"json2csv@^6.0.0-alpha.2":
+  "integrity" "sha512-nJ3oP6QxN8z69IT1HmrJdfVxhU1kLTBVgMfRnNZc37YEY+jZ4nU27rBGxT4vaqM/KUCavLRhntmTuBFqZLBUcA=="
+  "resolved" "https://registry.npmjs.org/json2csv/-/json2csv-6.0.0-alpha.2.tgz"
+  "version" "6.0.0-alpha.2"
+  dependencies:
+    "@streamparser/json" "^0.0.6"
+    "commander" "^6.2.0"
+    "lodash.get" "^4.4.2"
+
 "jsonwebtoken@^8.1.0", "jsonwebtoken@^8.5.1":
   "integrity" "sha512-XjwVfRS6jTMsqYs0EsuJ4LGxXV14zQybNd4L2r0UvbVnSF9Af8x7p5MzbJ90Ioz/9TI41/hTCvznF/loiSzn8w=="
   "resolved" "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz"
@@ -654,6 +681,11 @@
   "integrity" "sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ=="
   "resolved" "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz"
   "version" "4.5.0"
+
+"lodash.get@^4.4.2":
+  "integrity" "sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ=="
+  "resolved" "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
+  "version" "4.4.2"
 
 "lodash.includes@^4.3.0":
   "integrity" "sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8="
@@ -695,10 +727,10 @@
   "resolved" "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz"
   "version" "4.3.2"
 
-"lodash@^4.17.15":
-  "integrity" "sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA=="
-  "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz"
-  "version" "4.17.20"
+"lodash@^4.17.15", "lodash@^4.17.21":
+  "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
+  "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
+  "version" "4.17.21"
 
 "long@^4.0.0":
   "integrity" "sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA=="
@@ -1256,6 +1288,11 @@
   "integrity" "sha512-X/p3UZerAIsbBfN/IwahhYaBbY68EN/UQBWHtsbXGT5bfrH/p4NQzUCG1kF/rtKaNpnJ7jAu6NGTdSNtyNIXMw=="
   "resolved" "https://registry.npmjs.org/validator/-/validator-10.11.0.tgz"
   "version" "10.11.0"
+
+"validator@^13.7.0":
+  "integrity" "sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA=="
+  "resolved" "https://registry.npmjs.org/validator/-/validator-13.9.0.tgz"
+  "version" "13.9.0"
 
 "vary@^1", "vary@~1.1.2":
   "integrity" "sha1-IpnwLG3tMNSllhsLn3RSShj2NPw="

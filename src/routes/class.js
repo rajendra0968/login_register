@@ -21,10 +21,12 @@ function verify(req,res,next){
     }    
 }
 //
-router.post('/roll',controller.roll);
+router.post('/role',controller.role);
+//
+router.post('/login',controller.login);
 //leave request
-router.post('/signup',controller.signup);//customer create
-router.post('/user_update',controller.user_update);
+router.post('/signup',userValidator.userCreateValidator,controller.signup);//customer create
+router.post('/user_update',userValidator.userCreateValidator,controller.user_update);
 router.post('/findone_delete',controller.findone_delete);
 router.get('/findall',controller.alluser);//
 router.get('/findone',controller.findone);//pending approvation

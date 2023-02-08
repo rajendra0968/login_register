@@ -11,17 +11,22 @@ const accountService = new accountServic();
 const jwt = require("jsonwebtoken");
 //
 class controller {
-  
-  roll = async (req, res, next) => {
+  login = async (req,res,next)=>{
     accountService
-      .roll(req.body)
-      .then((accounts) => res.send("roll created").status(200))
+      .login(req.body)
+      .then((accounts) => res.json(accounts).status(200))
+      .catch(next);
+  }
+  role = async (req, res, next) => {
+    accountService
+      .role(req.body)
+      .then((accounts) => res.json(accounts).status(200))
       .catch(next);
   };
   signup = async (req, res, next) => {
     accountService
       .signup(req.body)
-      .then((accounts) => res.json({accounts}).status(200))
+      .then((message) => res.json(message).status(200))
       .catch(next);
   };
   user_update = async (req, res, next) => {

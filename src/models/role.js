@@ -4,10 +4,10 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        roll_name: { type: DataTypes.STRING,},
-        roll_code: { type: DataTypes.STRING },
+        role_name: { type: DataTypes.STRING,},
+        role_code: { type: DataTypes.STRING },
        // phone_number: { type: DataTypes.INTEGER,},
-        created: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+        created: { type: DataTypes.DATE},
         updated: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
         deleted: { type: DataTypes.DATE },
         // isVerified: {
@@ -29,5 +29,5 @@ function model(sequelize) {
         }        
     };
 
-    return sequelize.define('Roll_table', attributes,options);
+    return sequelize.define('Role_table', attributes,options);
 }
