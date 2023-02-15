@@ -5,52 +5,40 @@ const Joi = require("joi");
 //const authorize = require('_middleware/authorize')
 const Role = require("_helpers/role");
 require("dotenv").config();
-const accountServic = require("../services/account.service");
+const accountServic = require("../services/user.service");
 const accountService = new accountServic();
 //module.exports = {getAll,getById,create,start};
 const jwt = require("jsonwebtoken");
 //
 class controller {
-  login = async (req,res,next)=>{
-    accountService
-      .login(req.body)
-      .then((accounts) => res.json(accounts).status(200))
-      .catch(next);
-  }
-  role = async (req, res, next) => {
-    accountService
-      .role(req.body)
-      .then((accounts) => res.json(accounts).status(200))
-      .catch(next);
-  };
   signup = async (req, res, next) => {
     accountService
       .signup(req.body)
-      .then((message) => res.json(message).status(200))
+      .then((message) => res.json(message.status,message))
       .catch(next);
   };
   user_update = async (req, res, next) => {
     accountService
       .user_update(req.body,req.query)
-      .then((accounts) => res.json(accounts).status(200))
+      .then((message) => res.json(message.status,message))
       .catch(next);
   };
   findone_delete = async (req, res, next) => {
     accountService
       .findone_delete(req.query)
-      .then((accounts) => res.json(accounts).status(200))
+      .then((message) => res.json(message.status,message))
       .catch(next);
   };
   alluser = async (req, res, next) => {
     accountService
       .alluser(req.body)
-      .then((accounts) => res.json(accounts))
+      .then((message) => res.json(message))
       .catch(next);
   };
   findone = async (req, res, next) => {
     accountService
       .findone(req.query)
-      .then((accounts) => res.json(accounts))
+      .then((message) => res.json(message.status,message))
       .catch(next);
   };
 }

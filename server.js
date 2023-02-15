@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const cron = require('node-cron');
-//const errorHandler = require('_middleware/error-handler');
+const errorHandler = require('_middleware/error-handler');
 
 require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,11 +15,15 @@ app.use(cookieParser());
 // allow cors requests from any origin and with credentials
 app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
 
-
+app.get('/sms',(req,res)=>{
+    res.send("<h1>hello</h1>")
+})
 // swagger docs route
 
 // api routes
-app.use(require('./src/routes/class'));
+app.use(require('./src/routes/userRoute'));
+app.use(require('./src/routes/roleRoute'));
+app.use(require('./src/routes/loginRoute'));
 //app.use('/api-docs', require('_helpers/swagger'));
 
 // start server
