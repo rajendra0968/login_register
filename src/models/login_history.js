@@ -5,8 +5,12 @@ module.exports = model;
 function model(sequelize) {
     const attributes = {
         id:{type:DataTypes.INTEGER,allowNull: false,autoIncrement:true,primaryKey:true},
-        role_name: { type: DataTypes.STRING,},
-        role_code: { type: DataTypes.STRING },
+        user_id:{ type: DataTypes.STRING,},
+        login_status:{ type: DataTypes.STRING,},
+        city: { type: DataTypes.STRING,},
+        state: { type: DataTypes.STRING },
+        country:{ type: DataTypes.STRING },
+        ip: { type: DataTypes.STRING },
        // phone_number: { type: DataTypes.INTEGER,},
         created_at: { type: DataTypes.DATE},
         updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
@@ -20,15 +24,7 @@ function model(sequelize) {
     const options = {
         // disable default timestamp fields (createdAt and updatedAt)
         timestamps: false, 
-        defaultScope: {
-            // exclude password hash by default
-            attributes: { exclude: ['passwordHash'] }
-        },
-        scopes: {
-            // include hash with this scope
-            withHash: { attributes: {}, }
-        }        
     };
 
-    return sequelize.define('Roles', attributes,options);
+    return sequelize.define('Login_history', attributes,options);
 }

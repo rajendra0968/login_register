@@ -14,3 +14,11 @@
 //             return res.status(500).json({ message: err.message });
 //     }
 // }
+const status = {
+    Ok:200,
+    Conflict:409,
+    Unauthorized:401,
+    Not_found:404,
+    Created:201
+  };
+  module.exports = status;

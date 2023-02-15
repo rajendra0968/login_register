@@ -1,6 +1,6 @@
-FROM node:14-alpine
+FROM node:stretch-slim
 
-WORKDIR /server
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
@@ -8,6 +8,5 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 4000
-
-CMD [ "nodemon", "server.js" ]
+EXPOSE 3000
+CMD [ "npm", "start" ]

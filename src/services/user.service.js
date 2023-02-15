@@ -6,7 +6,8 @@ const { Op, where } = require("sequelize");
 const sendEmail = require("_helpers/send-email");
 const db = require("_helpers/db");
 const Role = require("_helpers/role");
-const customerda = require("../dao/customer_table");
+const userda = require("../dao/userdao");
+const status = require('../../_middleware/error-handler');
 //
 // const createToken = async(req,res,one)=>{
 //     const token =
@@ -14,42 +15,27 @@ const customerda = require("../dao/customer_table");
 //     return token;
 // }
 //
-const customerdao = new customerda();
-class customer {
-    login = async (params)=>{
-
-    const token = await jwt.sign({ id: `${params.phone_number}` }, process.env.Secret);
-    const data = await customerdao.findbyname(params.phone_number);
-    if(data == null){
-      return {message:'phone number is not exists'};
-    }
-    else{
-      return {data:data,token};
-    }
-  }
-  role = async (params) => {
-    const data = new db.Role_table({
-      role_name: params.name,
-      role_code: params.code,
-      created:Date.now()
-    });
-    data.save();
-    return{message:"role created"};
-  };
+const userDao = new userda();
+class users {
 
   alluser = async (params) => {
-    const data = await customerdao.findall(); //await db.Customer_table.findAll({where:params.email});
+    const data = await userDao.findall(); //await db.User_table.findAll({where:params.email});
     return { data };
   };
   findone = async (params) => {
-    const data = await customerdao.findone(params); //({where:{id:params.id}})
-    return { data };
+    const data = await userDao.findone(params); //({where:{id:params.id}})
+    if(data == null || data == 0){
+return {message:"user not found",status:status.Not_found}
+    }
+    else{
+      return {data:data,status:status.Ok}
+    }
   };
   findone_delete = async (params) => {
-    var data = await db.Customer_table.update(
+    var data = await db.Users.update(
       {
-        status: "in-active",
-        deleted:Date.now()
+        status: "in_active",
+        deleted_at:Date.now()
       },
       {
         where: {
@@ -58,19 +44,19 @@ class customer {
       }
     ); //destroy({where:{id:params.id}})
     if(data == null || data == 0){
-return {code:101,message:"user not found"}
+return {message:"user not found",status:status.Not_found}
     }
     else{
-      return {message:"user deleted successfully"}
+      return {message:"user deleted successfully",status:status.Ok}
     }
     
   };
   user_update = async (params, query) => {
     const detail = await params;
-    const rol = await db.Role_table.findOne({
+    const rol = await db.Roles.findOne({
       where: { role_name: detail.role_name },
     });
-    var data = await db.Customer_table.update(
+    var data = await db.Users.update(
       {
         name: detail.name,
         email: detail.email,
@@ -79,7 +65,7 @@ return {code:101,message:"user not found"}
         pincode: detail.pincode,
         role_code: rol.id,
         status: detail.status,
-        updated:Date.now()
+        updated_at:Date.now()
       },
       {
         where: {
@@ -88,40 +74,40 @@ return {code:101,message:"user not found"}
       }
     );
     if(data == null || data == 0){
-      return {code:101,message:"user not found"}
+      return {message:"user not found",status:status.Not_found}
           }
           else{
-            return {message:"user updated successfully"}
+            return {message:"user updated successfully",status:status.Ok}
           }
   };
   signup = async (params) => {
     //var one = 123;
     
     const detail = await params;
-    const rol = await db.Role_table.findOne({
+    const rol = await db.Roles.findOne({
       where: { role_name: detail.role_name },
     });
-    const cust1 = await customerdao.findbyname(detail.phone_number)
+    const cust1 = await userDao.findbyname(detail.phone_number)
     //console.log(detail);
     if (cust1 == null) {
-      const data = new db.Customer_table({
+      const data = new db.Users({
         name: detail.name,
         email: detail.email,
         phone_number: detail.phone_number,
         otp_verify: detail.password,
         pincode: detail.pincode,
-        role_code: rol.id,
+        role_name:rol.role_name,
         status: detail.status,
-        created: Date.now()
+        created_at: Date.now()
       });
       await data.save();
-      return {message:"successfully signup"};
+      return {message:"successfully signup",status:status.Created};
     } else {
-      return {message: "phone number is already exists"};
+      return {message: "phone number is already exists",status:status.Conflict};
     }
     //}
   };
   
 }
 
-module.exports = customer;
+module.exports = users;

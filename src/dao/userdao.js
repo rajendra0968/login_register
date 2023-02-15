@@ -5,17 +5,17 @@ const db = require("../../_helpers/db");
 class UserDao{
 
     findall = async (email)=> {
-        return  db.Customer_table.findAll();
+        return await db.Users.findAll();
     }
     findone = async(params)=>{
-        return await db.Customer_table.findOne({where:{id:params.id}})
+        return await db.Users.findOne({where:{id:params.id}})
       }
       findone_delete = async(params)=>{
-        return await db.Customer_table.destroy({where:{id:params.id}})
+        return await db.Users.destroy({where:{id:params.id}})
         
       }
       findbyname = async(params)=>{
-        return await db.Customer_table.findOne({where:{phone_number:params}});
+        return await db.Users.findOne({where:{phone_number:params}});
       }
       
 
