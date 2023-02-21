@@ -9,6 +9,7 @@ function model(sequelize) {
         email: { type: DataTypes.STRING, allowNull: false },
         phone_number: { type: DataTypes.STRING,allowNull: false},
         otp_verify: { type: DataTypes.BOOLEAN,},
+        password:{ type: DataTypes.STRING,},
         pincode:{ type: DataTypes.INTEGER,},
         role_name:{ type: DataTypes.STRING,allowNull: false},
         status:{ type: DataTypes.STRING,},
@@ -25,14 +26,7 @@ function model(sequelize) {
     const options = {
         // disable default timestamp fields (createdAt and updatedAt)
         timestamps: false, 
-        defaultScope: {
-            // exclude password hash by default
-            attributes: { exclude: ['passwordHash'] }
-        },
-        scopes: {
-            // include hash with this scope
-            withHash: { attributes: {}, }
-        }        
+        
     };
 
     return sequelize.define('Users', attributes,options);

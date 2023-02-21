@@ -25,7 +25,16 @@ class users {
   findone = async (params) => {
     const data = await userDao.findone(params); //({where:{id:params.id}})
     if(data == null || data == 0){
-return {message:"user not found",status:status.Not_found}
+return {message:"user not found",status:status.Conflict}
+    }
+    else{
+      return {data:data,status:status.Ok}
+    }
+  };
+  findbyname = async (params) => {
+    const data = await userDao.findbyname(params.phone_number); //({where:{id:params.id}})
+    if(data == null || data == 0){
+return {message:"user not found",status:status.Conflict}
     }
     else{
       return {data:data,status:status.Ok}
@@ -44,7 +53,7 @@ return {message:"user not found",status:status.Not_found}
       }
     ); //destroy({where:{id:params.id}})
     if(data == null || data == 0){
-return {message:"user not found",status:status.Not_found}
+return {message:"user not found",status:status.Conflict}
     }
     else{
       return {message:"user deleted successfully",status:status.Ok}
@@ -74,7 +83,7 @@ return {message:"user not found",status:status.Not_found}
       }
     );
     if(data == null || data == 0){
-      return {message:"user not found",status:status.Not_found}
+      return {message:"user not found",status:status.Conflict}
           }
           else{
             return {message:"user updated successfully",status:status.Ok}
@@ -88,20 +97,25 @@ return {message:"user not found",status:status.Not_found}
       where: { role_name: detail.role_name },
     });
     const cust1 = await userDao.findbyname(detail.phone_number)
+    if(detail.password){
+    var pass =await bcrypt.hash(`${detail.password}`,10);
+    }
     //console.log(detail);
     if (cust1 == null) {
+      console.log(pass)
       const data = new db.Users({
         name: detail.name,
         email: detail.email,
         phone_number: detail.phone_number,
-        otp_verify: detail.password,
+        otp_verify: detail.otp_verify,
+        password:pass,
         pincode: detail.pincode,
         role_name:rol.role_name,
         status: detail.status,
         created_at: Date.now()
       });
       await data.save();
-      return {message:"successfully signup",status:status.Created};
+      return {data:data,message:"successfully signup",status:status.Created};
     } else {
       return {message: "phone number is already exists",status:status.Conflict};
     }

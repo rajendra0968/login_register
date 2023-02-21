@@ -27,9 +27,10 @@ const jwt  =require('jsonwebtoken');
 //router.post('/logout',controller.logout)
 //leave request
 router.post('/signup',userValidator.userCreateValidator,controller.signup);//customer create
-router.post('/user_update',userValidator.id_CreateValidator,userValidator.userCreateValidator,controller.user_update);
+router.post('/user_update',userValidator.id_CreateValidator,controller.user_update);
 router.post('/findone_delete',userValidator.id_CreateValidator,controller.findone_delete);
 router.get('/findall',controller.alluser);//
 router.get('/findone',userValidator.id_CreateValidator,controller.findone);//pending approvation
+router.get('/user_findbyphone_number',controller.findbyname);
 
 module.exports = router;

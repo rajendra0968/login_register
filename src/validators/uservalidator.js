@@ -9,7 +9,21 @@ class UserValidator {
         const schema = Joi.object({
             name:Joi.string().min(6).max(25).required(),
             email: Joi.string().email().required(),
-            password: Joi.boolean().required(),
+            otp_verify: Joi.boolean().allow(null).allow('').optional(),
+            password:Joi.string().allow(null).allow('').optional(),
+            phone_number: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+            pincode: Joi.number().required(),
+            role_name: Joi.string().required(),
+            status: Joi.string().required(),
+        });
+        return output(req,res,next,schema);
+    }
+    async admin_userCreateValidator(req, res, next) {
+        // create schema object
+        const schema = Joi.object({
+            name:Joi.string().min(6).max(25).required(),
+            email: Joi.string().email().required(),
+            password: Joi.string().required(),
             phone_number: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
             pincode: Joi.number().required(),
             role_name: Joi.string().required(),

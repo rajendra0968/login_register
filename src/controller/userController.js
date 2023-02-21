@@ -41,6 +41,12 @@ class controller {
       .then((message) => res.json(message.status,message))
       .catch(next);
   };
+  findbyname = async (req, res, next) => {
+    accountService
+      .findbyname(req.query)
+      .then((message) => res.json(message.status,message))
+      .catch(next);
+  };
 }
 // jwt.verify(req.t,process.env.Secret,(err,authData)=>{
 //   if(err){
